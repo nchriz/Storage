@@ -80,7 +80,6 @@ public class FileService {
     ) throws FileNotFoundException {
         MetadataEntity metadata = metadataRepository.findByIdAndDeletedIsFalse(fileId)
                 .orElseThrow(() -> new FileNotFoundException("File with ID " + fileId + " not found"));
-        System.out.println(metadata);
         if (!metadata.getUserId().equals(fileUpdateRequest.getUserId())) {
             throw new IllegalArgumentException("User is not authorized to update file");
         }

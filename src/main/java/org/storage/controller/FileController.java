@@ -37,7 +37,7 @@ public class FileController {
             @RequestPart("file") MultipartFile file,
             @RequestPart("userId") String userId,
             @RequestPart("visibility") String visibility,
-            @RequestPart("tags") String tag,
+            @RequestPart("tags") Optional<String> tag,
             @RequestPart("fileName") Optional<String> fileName
     ) {
         try {
@@ -96,8 +96,8 @@ public class FileController {
         }
     }
 
-    private FileUploadMetadata buildFileuploadMetadata(String id, Optional<String> fileName, String visibility, String tag) throws IllegalArgumentException {
-        List<String> tags = Arrays.stream(tag.split(",")).toList();
+    private FileUploadMetadata buildFileuploadMetadata(String id, Optional<String> fileName, String visibility, Optional<String> tag) throws IllegalArgumentException {
+        List<String> tags = Arrays.stream(tag.orElse("").split(",")).toList();
         if (tags.size() > 5) {
             throw new IllegalArgumentException();
         }
