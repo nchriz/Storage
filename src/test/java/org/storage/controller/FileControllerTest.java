@@ -52,7 +52,7 @@ public class FileControllerTest {
         when(fileService.upload(any(), any())).thenReturn(response);
 
         ResponseEntity<FileUploadResponse> result =
-                fileController.upload(file, userId, visibility, tags, Optional.of("test.txt"));
+                fileController.upload(file, userId, visibility, Optional.of(tags), Optional.of("test.txt"));
 
         assertEquals(200, result.getStatusCode().value());
         assertEquals("SUCCESS", result.getBody().getMessage());
@@ -73,7 +73,7 @@ public class FileControllerTest {
         String tags = "t1,t2,t3,t4,t5,t6";
 
         ResponseEntity<FileUploadResponse> result =
-                fileController.upload(file, userId, visibility, tags, Optional.of("test.txt"));
+                fileController.upload(file, userId, visibility, Optional.of(tags), Optional.of("test.txt"));
 
         assertEquals(400, result.getStatusCode().value());
         verify(fileService, never()).upload(any(), any());
