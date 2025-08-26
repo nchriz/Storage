@@ -22,6 +22,12 @@ Each Interactions with a file is through the fileID
 As the file will be stored in a file system that is easily manageable we will handle the Metadata around the files in a
 Postgres Database. This would minimise the Database and being able to process the files easily.
 
+## Users
+
+For this PoC a User will be created, if there isn't already one, when a file get uploaded.
+
+There is a Controller that can be ignored that will handle User creation if the PoC needs to be extended
+
 ## How to run
 
 In order to run this, run the Docker Compose file
